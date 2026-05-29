@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti, mi amor eterno 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Pinyon+Script&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum: #2d0a4e;
+    --violet: #6b21a8;
+    --lavender: #c084fc;
+    --lilac: #e9d5ff;
+    --rose-purple: #a855f7;
+    --deep: #1a0630;
+    --gold: #f0c060;
+    --cream: #fdf6ff;
+    --pink-purple: #d946ef;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--deep);
+    min-height: 100vh;
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CURSOR PERSONALIZADO */
+  .cursor {
+    width: 18px; height: 18px;
+    background: radial-gradient(circle, #f0c060, #d946ef);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    box-shadow: 0 0 12px #d946ef88;
+  }
+
+  /* FONDO ESTRELLADO */
+  .stars-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* PÉTALOS FLOTANTES */
+  .petals-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .petal {
+    position: absolute;
+    top: -30px;
+    font-size: 1.2rem;
+    opacity: 0.7;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-30px) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* CONTENEDOR PRINCIPAL */
+  .main-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 20px 100px;
+  }
+
+  /* ENCABEZADO MÁGICO */
+  .header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeSlideDown 1.2s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .header-ornament {
+    font-size: 2rem;
+    letter-spacing: 12px;
+    color: var(--lavender);
+    opacity: 0.6;
+    margin-bottom: 10px;
+  }
+
+  .header-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    background: linear-gradient(135deg, #f0c060, #e879f9, #c084fc, #f0c060);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s ease infinite;
+    line-height: 1.1;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .header-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--lavender);
+    letter-spacing: 5px;
+    margin-top: 8px;
+    opacity: 0.8;
+  }
+
+  /* LÍNEA DECORATIVA */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 28px 0;
+    opacity: 0.6;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--lavender), transparent);
+  }
+  .divider span { color: var(--gold); font-size: 0.9rem; }
+
+  /* SECCIÓN DE OJOS (ANIMADA) */
+  .eyes-section {
+    text-align: center;
+    margin: 40px 0;
+    animation: fadeIn 1.5s ease 0.5s forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .eyes-container {
+    display: inline-flex;
+    gap: 40px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  .eye {
+    width: 70px; height: 40px;
+    background: var(--plum);
+    border: 2px solid var(--lavender);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px var(--violet);
+  }
+
+  .eye:hover { box-shadow: 0 0 35px var(--rose-purple); transform: scale(1.1); }
+
+  .pupil {
+    width: 28px; height: 28px;
+    background: radial-gradient(circle at 35% 35%, #6b21a8, #1a0630);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s;
+  }
+
+  .pupil::after {
+    content: '';
+    width: 8px; height: 8px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px; left: 4px;
+  }
+
+  .eye-lashes {
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 5px;
+  }
+
+  .eye-lashes span {
+    width: 1.5px;
+    background: var(--lavender);
+    border-radius: 2px;
+    transform-origin: bottom;
+  }
+
+  /* CARTA PRINCIPAL */
+  .letter-card {
+    background: linear-gradient(145deg, rgba(45,10,78,0.6), rgba(107,33,168,0.15));
+    border: 1px solid rgba(192,132,252,0.3);
+    border-radius: 24px;
+    padding: 50px 45px;
+    margin: 30px 0;
+    position: relative;
+    backdrop-filter: blur(12px);
+    box-shadow: 
+      0 0 60px rgba(107,33,168,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    animation: fadeIn 1.5s ease 0.8s forwards;
+    opacity: 0;
+  }
+
+  .letter-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 50%; 
+    transform: translateX(-50%);
+    width: 120px; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .letter-text {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+    line-height: 2;
+    color: var(--lilac);
+    text-align: justify;
+  }
+
+  .letter-text .highlight {
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.1em;
+  }
+
+  .letter-text .purple-highlight {
+    color: #e879f9;
+    font-weight: 400;
+  }
+
+  .letra-capital {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 4rem;
+    float: left;
+    line-height: 0.75;
+    margin-right: 6px;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(240,192,96,0.5);
+  }
+
+  /* SECCIÓN PROMESAS */
+  .promises-section {
+    margin: 40px 0;
+    animation: fadeIn 1.5s ease 1s forwards;
+    opacity: 0;
+  }
+
+  .promises-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 2.4rem;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .promise-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(192,132,252,0.2);
+    background: rgba(45,10,78,0.3);
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .promise-item::before {
+    content: '';
+    position: absolute;
+    left: -100%; top: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(168,85,247,0.15), transparent);
+    transition: left 0.5s;
+  }
+
+  .promise-item:hover::before { left: 100%; }
+  .promise-item:hover { border-color: rgba(192,132,252,0.5); transform: translateX(6px); }
+
+  .promise-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .promise-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--lilac);
+    font-style: italic;
+  }
+
+  /* CORAZÓN PULSANTE */
+  .heart-section {
+    text-align: center;
+    margin: 50px 0;
+    animation: fadeIn 1.5s ease 1.2s forwards;
+    opacity: 0;
+  }
+
+  .big-heart {
+    font-size: 5rem;
+    display: inline-block;
+    animation: heartbeat 1.4s ease-in-out infinite;
+    cursor: pointer;
+    filter: drop-shadow(0 0 20px rgba(217,70,239,0.8));
+    transition: filter 0.3s;
+  }
+
+  .big-heart:hover { filter: drop-shadow(0 0 35px rgba(217,70,239,1)); }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+  }
+
+  .heart-label {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.8rem;
+    color: var(--lavender);
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* CONTADOR DE AMOR */
+  .love-counter {
+    background: linear-gradient(135deg, rgba(45,10,78,0.8), rgba(107,33,168,0.2));
+    border: 1px solid rgba(192,132,252,0.25);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+    animation: fadeIn 1.5s ease 1.4s forwards;
+    opacity: 0;
+  }
+
+  .counter-label {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: var(--lavender);
+    opacity: 0.7;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .counter-value {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    background: linear-gradient(135deg, #f0c060, #e879f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .counter-sub {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--lavender);
+    opacity: 0.7;
+    margin-top: 10px;
+  }
+
+  /* GALERÍA DE MOMENTOS (texto) */
+  .moments-section {
+    margin: 40px 0;
+    animation: fadeIn 1.5s ease 1.6s forwards;
+    opacity: 0;
+  }
+
+  .moments-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 2.4rem;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .moments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .moment-card {
+    background: linear-gradient(145deg, rgba(45,10,78,0.6), rgba(107,33,168,0.1));
+    border: 1px solid rgba(192,132,252,0.2);
+    border-radius: 16px;
+    padding: 24px 18px;
+    text-align: center;
+    transition: all 0.4s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .moment-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(168,85,247,0.15), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .moment-card:hover { transform: translateY(-6px); border-color: rgba(192,132,252,0.5); box-shadow: 0 15px 40px rgba(107,33,168,0.3); }
+  .moment-card:hover::after { opacity: 1; }
+
+  .moment-emoji { font-size: 2rem; margin-bottom: 10px; display: block; }
+  .moment-text {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--lavender);
+    line-height: 1.6;
+  }
+
+  /* SECCIÓN FINAL */
+  .final-section {
+    text-align: center;
+    margin-top: 60px;
+    animation: fadeIn 1.5s ease 2s forwards;
+    opacity: 0;
+  }
+
+  .final-quote {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    background: linear-gradient(135deg, #f0c060, #e879f9, #c084fc);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s ease infinite;
+    line-height: 1.3;
+    margin-bottom: 30px;
+  }
+
+  .signature {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 2.5rem;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(240,192,96,0.4);
+    margin-top: 20px;
+    display: block;
+  }
+
+  /* BOTÓN DE CONFETI */
+  .love-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, var(--violet), var(--pink-purple));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 25px rgba(168,85,247,0.4);
+  }
+
+  .love-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(217,70,239,0.6);
+  }
+
+  /* FLOATING HEARTS */
+  .float-heart {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1.5rem;
+    z-index: 9998;
+    animation: floatUp 2s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-150px) scale(0.5); }
+  }
+
+  /* MENSAJE SECRETO */
+  .secret-msg {
+    display: none;
+    background: rgba(45,10,78,0.9);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 20px;
+    font-style: italic;
+    color: var(--lilac);
+    line-height: 1.8;
+    animation: fadeIn 0.5s ease;
+    font-size: 1.05rem;
+  }
+
+  /* SPARKLES AL HOVER */
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9997;
+    animation: sparkle-anim 0.8s ease forwards;
+    font-size: 1rem;
+  }
+
+  @keyframes sparkle-anim {
+    0% { opacity: 1; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.5) rotate(180deg); }
+    100% { opacity: 0; transform: scale(0) rotate(360deg); }
+  }
+
+  /* PANTALLA DE BIENVENIDA */
+  .welcome-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: radial-gradient(ellipse at center, #2d0a4e 0%, #1a0630 50%, #0d0218 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+  }
+
+  .welcome-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .welcome-stars-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .welcome-star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle-w var(--dur, 3s) ease-in-out infinite var(--delay, 0s);
+  }
+
+  @keyframes twinkle-w {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+
+  .welcome-petals-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .welcome-petal-fly {
+    position: absolute;
+    top: -30px;
+    animation: fall-w linear infinite;
+    font-size: 1rem;
+    opacity: 0.6;
+  }
+
+  @keyframes fall-w {
+    0% { transform: translateY(-30px) rotate(0deg); opacity: 0.7; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .welcome-glow {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,85,247,0.25) 0%, transparent 70%);
+    position: absolute;
+    animation: pulse-glow 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+
+  .welcome-heart-big {
+    font-size: 4.5rem;
+    animation: heartbeat-w 1.4s ease-in-out infinite, fadeIn 1s ease forwards;
+    filter: drop-shadow(0 0 30px rgba(217,70,239,0.9));
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+  }
+
+  @keyframes heartbeat-w {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.18); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.12); }
+  }
+
+  .welcome-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    background: linear-gradient(135deg, #f0c060, #e879f9, #c084fc, #f0c060);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s ease infinite, fadeSlideDown 1s ease 0.2s both;
+    text-align: center;
+    line-height: 1.1;
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+  }
+
+  .welcome-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    color: var(--lavender);
+    letter-spacing: 4px;
+    margin-top: 10px;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.8s forwards;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+  }
+
+  .welcome-btn {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, #6b21a8, #d946ef);
+    border: none;
+    border-radius: 50px;
+    padding: 16px 44px;
+    color: white;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.35s;
+    box-shadow: 0 0 30px rgba(168,85,247,0.5), 0 0 60px rgba(217,70,239,0.2);
+    opacity: 0;
+    animation: fadeIn 1.2s ease 1.2s forwards;
+    text-transform: uppercase;
+  }
+
+  .welcome-btn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 50px rgba(217,70,239,0.8), 0 0 80px rgba(168,85,247,0.4);
+  }
+
+  .welcome-ornament {
+    font-size: 1.2rem;
+    letter-spacing: 14px;
+    color: var(--lavender);
+    opacity: 0.5;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.4s forwards;
+  }
+
+  /* REPRODUCTOR DE AUDIO (minimalista) */
+  .audio-player {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    background: rgba(45,10,78,0.85);
+    border: 1px solid rgba(192,132,252,0.35);
+    border-radius: 50px;
+    padding: 10px 20px 10px 14px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(107,33,168,0.3);
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .audio-player.visible { display: flex; }
+
+  .audio-play-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b21a8, #d946ef);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px rgba(217,70,239,0.5);
+    flex-shrink: 0;
+  }
+
+  .audio-play-btn:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(217,70,239,0.8); }
+
+  .audio-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--lavender);
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 120px;
+  }
+
+  .audio-note {
+    font-size: 0.7rem;
+    color: rgba(192,132,252,0.5);
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .audio-bars {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 18px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .audio-bars.playing { opacity: 1; }
+
+  .audio-bar {
+    width: 3px;
+    background: var(--rose-purple);
+    border-radius: 2px;
+    animation: bar-dance 0.8s ease-in-out infinite;
+  }
+
+  .audio-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
+  .audio-bar:nth-child(2) { height: 14px; animation-delay: 0.15s; }
+  .audio-bar:nth-child(3) { height: 10px; animation-delay: 0.3s; }
+  .audio-bar:nth-child(4) { height: 16px; animation-delay: 0.1s; }
+  .audio-bar:nth-child(5) { height: 8px; animation-delay: 0.25s; }
+
+  @keyframes bar-dance {
+    0%, 100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(1); }
+  }
+
+  /* MARCO DE FOTO */
+  .photo-frame-section {
+    text-align: center;
+    margin: 50px 0 30px;
+    animation: fadeIn 1.5s ease 1.8s forwards;
+    opacity: 0;
+  }
+
+  .photo-frame-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 2.6rem;
+    color: var(--gold);
+    margin-bottom: 28px;
+    text-shadow: 0 0 20px rgba(240,192,96,0.3);
+  }
+
+  .photo-frame {
+    display: inline-block;
+    position: relative;
+    padding: 14px;
+    background: linear-gradient(145deg, #2d0a4e, #1a0630);
+    border-radius: 6px;
+    box-shadow:
+      0 0 0 2px rgba(192,132,252,0.4),
+      0 0 0 6px rgba(45,10,78,0.8),
+      0 0 0 8px rgba(192,132,252,0.2),
+      0 0 40px rgba(168,85,247,0.35),
+      0 0 80px rgba(107,33,168,0.2);
+  }
+
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(240,192,96,0.2);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .photo-frame-corner {
+    position: absolute;
+    width: 22px; height: 22px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.6;
+    z-index: 2;
+  }
+
+  .photo-frame-corner.tl { top: 4px; left: 4px; border-width: 2px 0 0 2px; }
+  .photo-frame-corner.tr { top: 4px; right: 4px; border-width: 2px 2px 0 0; }
+  .photo-frame-corner.bl { bottom: 4px; left: 4px; border-width: 0 0 2px 2px; }
+  .photo-frame-corner.br { bottom: 4px; right: 4px; border-width: 0 2px 2px 0; }
+
+  .photo-frame img {
+    display: block;
+    max-width: min(420px, 85vw);
+    max-height: 380px;
+    width: auto;
+    height: auto;
+    border-radius: 3px;
+    object-fit: cover;
+    position: relative;
+    z-index: 0;
+  }
+
+  .photo-frame-caption {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.7rem;
+    color: var(--lavender);
+    margin-top: 18px;
+    opacity: 0.85;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .letter-card { padding: 30px 22px; }
+    .eyes-container { gap: 25px; }
+    .eye { width: 55px; height: 32px; }
+    .pupil { width: 22px; height: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="tuYyo.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PANTALLA DE BIENVENIDA -->
+<div class="welcome-screen" id="welcomeScreen">
+  <div class="welcome-stars-bg" id="welcomeStarsBg"></div>
+  <div class="welcome-petals-bg" id="welcomePetalsBg"></div>
+  <div class="welcome-glow"></div>
+  <div class="welcome-heart-big">💜</div>
+  <div class="welcome-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+  <div class="welcome-title">Para mi amor,<br>mi princesita hermosa</div>
+  <div class="welcome-subtitle">una carta escrita con todo mi corazón para ti</div>
+  <button class="welcome-btn" id="welcomeBtn" onclick="enterLetter()">
+    Abrir mi carta 💜
+  </button>
+</div>
+
+<!-- REPRODUCTOR FLOTANTE -->
+<div class="audio-player" id="audioPlayer">
+  <button class="audio-play-btn" id="playBtn" onclick="toggleMusic()">▶</button>
+  <div>
+    <div class="audio-label">Tú y Yo 🎵</div>
+    <div class="audio-note">nuestra canción</div>
+  </div>
+  <div class="audio-bars" id="audioBars">
+    <div class="audio-bar"></div>
+    <div class="audio-bar"></div>
+    <div class="audio-bar"></div>
+    <div class="audio-bar"></div>
+    <div class="audio-bar"></div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+
+<div class="cursor" id="cursor"></div>
+
+<!-- CANVAS ESTRELLAS -->
+<canvas class="stars-canvas" id="stars"></canvas>
+
+<!-- PÉTALOS -->
+<div class="petals-container" id="petals"></div>
+
+<!-- CONTENIDO -->
+<div class="main-wrapper">
+
+  <!-- ENCABEZADO -->
+  <div class="header">
+    <div class="header-ornament">✦ ✦ ✦</div>
+    <div class="header-title">Para ti, mi amor</div>
+    <div class="header-sub">una carta que viene del fondo de mi corazón</div>
+  </div>
+
+  <!-- OJOS MÁGICOS -->
+  <div class="eyes-section">
+    <div style="font-size:0.85rem; letter-spacing:3px; color:var(--lavender); opacity:0.6; margin-bottom:16px; text-transform:uppercase;">Toca mis ojos y verás lo que veo en ti 💜</div>
+    <div class="eyes-container" id="eyesContainer">
+      <div class="eye" id="eye1">
+        <div class="pupil" id="pupil1"></div>
+        <div class="eye-lashes">
+          <span style="height:10px;transform:rotate(-15deg)"></span>
+          <span style="height:13px;transform:rotate(-5deg)"></span>
+          <span style="height:14px"></span>
+          <span style="height:13px;transform:rotate(5deg)"></span>
+          <span style="height:10px;transform:rotate(15deg)"></span>
+        </div>
+      </div>
+      <div class="eye" id="eye2">
+        <div class="pupil" id="pupil2"></div>
+        <div class="eye-lashes">
+          <span style="height:10px;transform:rotate(-15deg)"></span>
+          <span style="height:13px;transform:rotate(-5deg)"></span>
+          <span style="height:14px"></span>
+          <span style="height:13px;transform:rotate(5deg)"></span>
+          <span style="height:10px;transform:rotate(15deg)"></span>
+        </div>
+      </div>
+    </div>
+    <div id="eyeMsg" style="font-style:italic; color:var(--gold); font-size:1.05rem; min-height:30px; transition: all 0.5s;"></div>
+  </div>
+
+  <!-- CARTA PRINCIPAL -->
+  <div class="letter-card">
+    <p class="letter-text">
+      <span class="letra-capital">M</span>i amor, mi princesita linda, mi amorchito hermosa... 
+      Hay palabras que el mundo no ha inventado todavía para describir lo que siento por ti, 
+      y aun así aquí estoy, intentándolo, porque <span class="highlight">tú mereces que lo intente mil veces más.</span>
+    </p>
+    <br>
+    <p class="letter-text">
+      En tus ojos vivo mi lugar favorito del universo. Cuando te miro, veo a alguien 
+      <span class="purple-highlight">tan bella, tan tierna, tan luminosa</span> que se me olvida respirar. 
+      Eres perfecta — no porque no tengas imperfecciones, sino porque cada parte de ti 
+      es exactamente como debe ser. Eres perfecta <span class="highlight">para mí.</span>
+    </p>
+    <br>
+    <p class="letter-text">
+      No hay nada en este mundo que no haría por ti. Absolutamente nada. 
+      Eres mi todo, mi razón, mi calma y mi aventura al mismo tiempo. 
+      <span class="purple-highlight">Te quiero hoy, te querré mañana, y te querré todos los días</span> 
+      que me queden de vida y más allá de eso también.
+    </p>
+    <br>
+    <p class="letter-text">
+      Mi amor por ti no tiene condiciones, no tiene límites, no tiene fin. 
+      Es como el cielo — siempre está ahí, aunque a veces no lo veas, 
+      aunque cambien las estaciones, aunque pasen los años. 
+      <span class="highlight">Siempre, siempre, siempre estaré aquí, amándote.</span>
+    </p>
+  </div>
+
+  <!-- CORAZÓN -->
+  <div class="heart-section">
+    <div class="big-heart" id="bigHeart" onclick="launchHearts()">💜</div>
+    <span class="heart-label">toca el corazón con amor 💜</span>
+    <div class="secret-msg" id="secretMsg">
+      "Eres la historia más bonita que me ha pasado. 
+      Cada momento contigo es un tesoro que guardo en lo más profundo de mí. 
+      Gracias por existir, gracias por ser tú, gracias por dejarme amarte. 
+      Eres mi princesita linda, mi amorchito hermosa, mi todo. 💜✨"
+    </div>
+  </div>
+
+  <!-- PROMESAS -->
+  <div class="promises-section">
+    <div class="divider"><div class="divider-line"></div><span>💜</span><div class="divider-line"></div></div>
+    <div class="promises-title">Mis promesas para ti</div>
+    <div class="promise-item"><span class="promise-icon">🌙</span><span class="promise-text">Siempre estaré para ti, en cada noche oscura y en cada amanecer dorado.</span></div>
+    <div class="promise-item"><span class="promise-icon">💜</span><span class="promise-text">Te amaré incondicionalmente — por lo que eres, por lo que piensas, por cómo amas.</span></div>
+    <div class="promise-item"><span class="promise-icon">✨</span><span class="promise-text">Nunca dejaré de ver lo bella, lo tierna y lo perfecta que eres.</span></div>
+    <div class="promise-item"><span class="promise-icon">🌺</span><span class="promise-text">No hay nada — absolutamente nada — que no haría por hacerte feliz.</span></div>
+    <div class="promise-item"><span class="promise-icon">🦋</span><span class="promise-text">Recordaré cada pequeño detalle tuyo, porque todo en ti merece ser recordado.</span></div>
+    <div class="promise-item"><span class="promise-icon">🌟</span><span class="promise-text">Te querré hoy, mañana, y en cada vida que nos regale el universo.</span></div>
+  </div>
+
+  <!-- CONTADOR -->
+  <div class="love-counter">
+    <div class="counter-label">Te he pensado</div>
+    <div class="counter-value" id="loveCount">0</div>
+    <div class="counter-sub">veces hoy — y el día no ha terminado 💜</div>
+  </div>
+
+  <!-- MOMENTOS -->
+  <div class="moments-section">
+    <div class="divider"><div class="divider-line"></div><span>✦</span><div class="divider-line"></div></div>
+    <div class="moments-title">Lo que eres para mí</div>
+    <div class="moments-grid">
+      <div class="moment-card">
+        <span class="moment-emoji">🌸</span>
+        <div class="moment-text">Mi princesita linda, que me hace sentir que el mundo es un lugar más bonito</div>
+      </div>
+      <div class="moment-card">
+        <span class="moment-emoji">💫</span>
+        <div class="moment-text">Mi amorchito hermosa, que ilumina cada rincón oscuro de mis días</div>
+      </div>
+      <div class="moment-card">
+        <span class="moment-emoji">🌙</span>
+        <div class="moment-text">Mi calma, mi hogar, mi lugar favorito en el mundo entero</div>
+      </div>
+      <div class="moment-card">
+        <span class="moment-emoji">💜</span>
+        <div class="moment-text">Mi todo — sin ti, el mundo no tiene el mismo color ni el mismo sabor</div>
+      </div>
+      <div class="moment-card">
+        <span class="moment-emoji">✨</span>
+        <div class="moment-text">La persona más bella que he visto jamás — por dentro y por fuera</div>
+      </div>
+      <div class="moment-card">
+        <span class="moment-emoji">🦋</span>
+        <div class="moment-text">Mi razón favorita para despertarme cada mañana con una sonrisa</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCO DE FOTO -->
+  <div class="photo-frame-section">
+    <div class="photo-frame-title">Nosotros 💜</div>
+    <div class="photo-frame">
+      <div class="photo-frame-corner tl"></div>
+      <div class="photo-frame-corner tr"></div>
+      <div class="photo-frame-corner bl"></div>
+      <div class="photo-frame-corner br"></div>
+      <img src="fotoU.jpg" alt="Nosotros" onerror="this.parentElement.style.display='none'; document.getElementById('photoPlaceholder').style.display='flex';">
+    </div>
+    <div id="photoPlaceholder" style="display:none; width:min(420px,85vw); height:260px; background:rgba(45,10,78,0.5); border:2px dashed rgba(192,132,252,0.3); border-radius:8px; align-items:center; justify-content:center; flex-direction:column; gap:12px; margin: 0 auto;">
+      <span style="font-size:2.5rem;">📷</span>
+      <span style="font-style:italic; color:var(--lavender); font-size:0.9rem; text-align:center; padding:0 20px;">Aquí irá nuestra foto más bonita<br><span style="opacity:0.6; font-size:0.8rem;">(coloca fotoU.jpg junto al archivo)</span></span>
+    </div>
+    <div class="photo-frame-caption">tú y yo, siempre 💜</div>
+  </div>
+
+  <!-- FINAL -->
+
+  <div class="final-section">
+    <div class="divider"><div class="divider-line"></div><span>💜</span><div class="divider-line"></div></div>
+    <div class="final-quote">
+      "En tus ojos veo mi universo entero.<br>
+      En tu sonrisa, mi razón de todo.<br>
+      Te amo, te quiero, y siempre, siempre lo haré."
+    </div>
+    <button class="love-btn" onclick="celebration()">💜 Para mi princesita hermosa 💜</button>
+    <span class="signature">Con todo mi amor, para siempre tuyo 💜</span>
+  </div>
+
+</div>
+
+<script>
+// PANTALLA DE BIENVENIDA — ESTRELLAS Y PÉTALOS
+(function() {
+  const bg = document.getElementById('welcomeStarsBg');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'welcome-star';
+    const size = 1 + Math.random() * 2.2;
+    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;--delay:${Math.random()*4}s;`;
+    bg.appendChild(s);
+  }
+
+  const pb = document.getElementById('welcomePetalsBg');
+  const pwEmojis = ['💜','✦','·','🌸','✧','⋆'];
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'welcome-petal-fly';
+    p.textContent = pwEmojis[Math.floor(Math.random()*pwEmojis.length)];
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = (5 + Math.random()*7) + 's';
+    p.style.animationDelay = (Math.random()*5) + 's';
+    p.style.fontSize = (0.7 + Math.random()*0.8) + 'rem';
+    pb.appendChild(p);
+  }
+})();
+
+// ENTRAR A LA CARTA
+function enterLetter() {
+  const ws = document.getElementById('welcomeScreen');
+  ws.classList.add('hidden');
+
+  // Reproducir música
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.6;
+  music.play().then(() => {
+    document.getElementById('audioPlayer').classList.add('visible');
+    document.getElementById('audioBars').classList.add('playing');
+    document.getElementById('playBtn').textContent = '⏸';
+  }).catch(() => {
+    // Si el navegador bloquea autoplay, mostrar el player igual para que el usuario lo active
+    document.getElementById('audioPlayer').classList.add('visible');
+  });
+}
+
+// CONTROLES DE MÚSICA
+let musicPlaying = false;
+function toggleMusic() {
+  const music = document.getElementById('bgMusic');
+  const btn = document.getElementById('playBtn');
+  const bars = document.getElementById('audioBars');
+  if (music.paused) {
+    music.play();
+    btn.textContent = '⏸';
+    bars.classList.add('playing');
+    musicPlaying = true;
+  } else {
+    music.pause();
+    btn.textContent = '▶';
+    bars.classList.remove('playing');
+    musicPlaying = false;
+  }
+}
+
+// CURSOR
+
+const cursor = document.getElementById('cursor');
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+  movePupils(e);
+  spawnSparkle(e);
+});
+
+// SPARKLES AL MOVER
+let lastSparkle = 0;
+function spawnSparkle(e) {
+  const now = Date.now();
+  if (now - lastSparkle < 120) return;
+  lastSparkle = now;
+  const emojis = ['✦', '·', '✧', '⋆'];
+  const s = document.createElement('div');
+  s.className = 'sparkle';
+  s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  s.style.left = (e.clientX + (Math.random()-0.5)*20) + 'px';
+  s.style.top = (e.clientY + (Math.random()-0.5)*20) + 'px';
+  s.style.color = `hsl(${270 + Math.random()*60},80%,75%)`;
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 800);
+}
+
+// OJOS QUE SIGUEN EL MOUSE
+function movePupils(e) {
+  ['eye1','eye2'].forEach((id, i) => {
+    const eye = document.getElementById(id);
+    const pupil = document.getElementById('pupil' + (i+1));
+    const rect = eye.getBoundingClientRect();
+    const ex = rect.left + rect.width/2;
+    const ey = rect.top + rect.height/2;
+    const angle = Math.atan2(e.clientY - ey, e.clientX - ex);
+    const dist = Math.min(8, Math.hypot(e.clientX - ex, e.clientY - ey)/10);
+    pupil.style.transform = `translate(calc(-50% + ${Math.cos(angle)*dist}px), calc(-50% + ${Math.sin(angle)*dist}px))`;
+  });
+}
+
+// MENSAJES DE LOS OJOS
+const eyeMsgs = [
+  "En tus ojos veo mi hogar… 💜",
+  "Tan bella, tan luminosa, tan perfecta… ✨",
+  "Eres lo más bonito que han visto mis ojos… 🌸",
+  "Te veo siendo siempre tan hermosa… 💫",
+  "Mi amor, eres todo lo que mis ojos buscan… 💜"
+];
+let eyeMsgIndex = 0;
+document.getElementById('eyesContainer').addEventListener('click', () => {
+  document.getElementById('eyeMsg').textContent = eyeMsgs[eyeMsgIndex % eyeMsgs.length];
+  eyeMsgIndex++;
+});
+
+// CORAZÓN SECRETO
+let heartClicks = 0;
+document.getElementById('bigHeart').addEventListener('click', () => {
+  heartClicks++;
+  if (heartClicks >= 3) {
+    document.getElementById('secretMsg').style.display = 'block';
+    heartClicks = 0;
+  }
+  launchHearts();
+});
+
+function launchHearts() {
+  const emojis = ['💜','🌸','✨','💫','🦋','🌺','💕'];
+  for (let i = 0; i < 8; i++) {
+    setTimeout(() => {
+      const h = document.createElement('div');
+      h.className = 'float-heart';
+      h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      h.style.left = (mouseX + (Math.random()-0.5)*100) + 'px';
+      h.style.top = mouseY + 'px';
+      h.style.fontSize = (1 + Math.random()) + 'rem';
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 2000);
+    }, i * 80);
+  }
+}
+
+// CONTADOR DE AMOR
+function animateCounter() {
+  const target = Math.floor(1000 + Math.random() * 8000);
+  const el = document.getElementById('loveCount');
+  let current = 0;
+  const step = target / 80;
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = Math.floor(current).toLocaleString();
+    if (current >= target) clearInterval(timer);
+  }, 20);
+}
+setTimeout(animateCounter, 1500);
+
+// CELEBRACIÓN
+function celebration() {
+  const emojis = ['💜','🌸','✨','💫','🦋','🌺','💕','⭐','🌙','✦'];
+  for (let i = 0; i < 30; i++) {
+    setTimeout(() => {
+      const h = document.createElement('div');
+      h.className = 'float-heart';
+      h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      h.style.left = Math.random() * window.innerWidth + 'px';
+      h.style.top = (window.innerHeight * 0.8) + 'px';
+      h.style.fontSize = (1 + Math.random()*1.5) + 'rem';
+      h.style.animationDuration = (1.5 + Math.random()) + 's';
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 3000);
+    }, i * 60);
+  }
+}
+
+// ESTRELLAS CANVAS
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const stars = Array.from({length: 180}, () => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height,
+  r: Math.random() * 1.5 + 0.3,
+  a: Math.random(),
+  speed: 0.003 + Math.random() * 0.008,
+  phase: Math.random() * Math.PI * 2
+}));
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const t = Date.now() / 1000;
+  stars.forEach(s => {
+    const alpha = 0.3 + 0.5 * Math.sin(t * s.speed * 10 + s.phase);
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `hsla(${270 + Math.random()*30}, 70%, 85%, ${alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+drawStars();
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+// PÉTALOS FLOTANTES
+const petalEmojis = ['🌸','✦','·','💜','✧'];
+function createPetal() {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.animationDuration = (6 + Math.random() * 8) + 's';
+  p.style.animationDelay = (Math.random() * 3) + 's';
+  p.style.fontSize = (0.8 + Math.random() * 0.8) + 'rem';
+  p.style.opacity = (0.3 + Math.random() * 0.5).toString();
+  document.getElementById('petals').appendChild(p);
+  setTimeout(() => p.remove(), 15000);
+}
+
+setInterval(createPetal, 700);
+</script>
+</body>
+</html>
